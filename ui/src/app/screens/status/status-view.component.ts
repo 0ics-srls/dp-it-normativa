@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { StatusStore } from './status.store';
 
 @Component({
   selector: 'dp-itn-status-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoPipe],
-  template: '<h1 data-testid="screen-title">{{ "status.title" | transloco }}</h1>',
+  imports: [TranslocoPipe, DatePipe],
+  templateUrl: './status-view.component.html',
+  styleUrl: './status-view.component.css',
 })
-export class StatusViewComponent {}
+export class StatusViewComponent {
+  protected readonly store = inject(StatusStore);
+}

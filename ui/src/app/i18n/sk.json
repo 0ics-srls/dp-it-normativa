@@ -49,6 +49,17 @@
     "range": "{{from}}-{{to}} z {{total}}"
   },
   "status": {
-    "title": "Stav načítania"
+    "title": "Stav načítania",
+    "refresh": "Obnoviť",
+    "empty": "Zatiaľ sa nenačítalo nič.",
+    "noCollection": "(bez kolekcie)",
+    "warningHint": "Jednotky bez embeddingu sa zatiaľ nedajú hľadať podľa významu",
+    "columns": {
+      "collection": "Kolekcia",
+      "acts": "Akty",
+      "units": "Jednotky",
+      "withoutEmbedding": "Bez embeddingu",
+      "lastIngested": "Posledné načítanie (UTC)"
+    }
   }
 }

@@ -49,6 +49,17 @@
     "range": "{{from}}-{{to}} di {{total}}"
   },
   "status": {
-    "title": "Stato dell'ingestione"
+    "title": "Stato dell'ingestione",
+    "refresh": "Aggiorna",
+    "empty": "Nessun dato è stato ancora acquisito.",
+    "noCollection": "(senza raccolta)",
+    "warningHint": "Le unità senza embedding non sono ancora ricercabili per significato",
+    "columns": {
+      "collection": "Raccolta",
+      "acts": "Atti",
+      "units": "Unità",
+      "withoutEmbedding": "Senza embedding",
+      "lastIngested": "Ultima acquisizione (UTC)"
+    }
   }
 }

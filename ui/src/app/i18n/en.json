@@ -49,6 +49,17 @@
     "range": "{{from}}-{{to}} of {{total}}"
   },
   "status": {
-    "title": "Ingest status"
+    "title": "Ingest status",
+    "refresh": "Refresh",
+    "empty": "Nothing has been ingested yet.",
+    "noCollection": "(no collection)",
+    "warningHint": "Units without embedding are not searchable by meaning yet",
+    "columns": {
+      "collection": "Collection",
+      "acts": "Acts",
+      "units": "Units",
+      "withoutEmbedding": "Without embedding",
+      "lastIngested": "Last ingest (UTC)"
+    }
   }
 }
