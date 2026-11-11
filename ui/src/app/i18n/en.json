@@ -1,0 +1,6 @@
+{
+  "common": { "loading": "Loading...", "error": "The data could not be loaded.", "retry": "Try again" },
+  "acts": { "title": "Acts" },
+  "act": { "title": "Act" },
+  "status": { "title": "Ingest status" }
+}

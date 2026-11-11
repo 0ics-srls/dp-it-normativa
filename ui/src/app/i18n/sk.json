@@ -1,0 +1,6 @@
+{
+  "common": { "loading": "Načítavam...", "error": "Údaje sa nepodarilo načítať.", "retry": "Skúsiť znova" },
+  "acts": { "title": "Akty" },
+  "act": { "title": "Akt" },
+  "status": { "title": "Stav načítania" }
+}

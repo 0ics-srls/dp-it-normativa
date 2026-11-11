@@ -1,0 +1,6 @@
+{
+  "common": { "loading": "Caricamento...", "error": "Impossibile caricare i dati.", "retry": "Riprova" },
+  "acts": { "title": "Atti" },
+  "act": { "title": "Atto" },
+  "status": { "title": "Stato dell'ingestione" }
+}
