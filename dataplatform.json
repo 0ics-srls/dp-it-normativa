@@ -50,17 +50,19 @@
             "maxItems": 50
           },
           "collection": { "type": "string", "minLength": 1, "default": "NORMATTIVA" },
-          "refreshToken": { "type": "string" }
+          "refreshToken": { "type": "string" },
+          "tokenBudget": { "type": "integer", "minimum": 0, "default": 30000, "description": "Hard stop of Jina tokens per embedding Run" }
         },
         "required": ["acts"]
       },
       "x-ui": {
-        "order": ["acts", "collection", "refreshToken"],
-        "labels": { "acts": "Acts", "collection": "Collection label", "refreshToken": "Refresh token" },
+        "order": ["acts", "collection", "refreshToken", "tokenBudget"],
+        "labels": { "acts": "Acts", "collection": "Collection label", "refreshToken": "Refresh token", "tokenBudget": "Embedding token budget" },
         "help": {
           "acts": "One act per entry: denominazione (e.g. LEGGE, DECRETO-LEGGE), year, number",
           "collection": "Label stored on every unit (default NORMATTIVA)",
-          "refreshToken": "Change this value to fetch all acts again"
+          "refreshToken": "Change this value to fetch all acts again",
+          "tokenBudget": "Maximum Jina tokens one Run may spend on embeddings (default 30000)"
         }
       }
     },
@@ -85,20 +87,102 @@
             "maxItems": 50
           },
           "collection": { "type": "string", "minLength": 1, "default": "NORMATTIVA" },
-          "refreshToken": { "type": "string" }
+          "refreshToken": { "type": "string" },
+          "tokenBudget": { "type": "integer", "minimum": 0, "default": 30000, "description": "Hard stop of Jina tokens per embedding Run" }
         },
         "required": ["acts"]
       },
       "x-ui": {
-        "order": ["acts", "collection", "refreshToken"],
-        "labels": { "acts": "Acts", "collection": "Collection label", "refreshToken": "Refresh token" },
+        "order": ["acts", "collection", "refreshToken", "tokenBudget"],
+        "labels": { "acts": "Acts", "collection": "Collection label", "refreshToken": "Refresh token", "tokenBudget": "Embedding token budget" },
         "help": {
           "acts": "One act per entry: Gazzetta Ufficiale publication date (YYYY-MM-DD) and codice redazionale (e.g. 21G00001)",
           "collection": "Label stored on every unit (default NORMATTIVA)",
-          "refreshToken": "Change this value to fetch all acts again"
+          "refreshToken": "Change this value to fetch all acts again",
+          "tokenBudget": "Maximum Jina tokens one Run may spend on embeddings (default 30000)"
         }
       }
     }
   ],
+  "pipeline": [
+    {
+      "step": "detect",
+      "class": "git:github.com/0ics-srls/dp-it-normativa-detect@v0.1.1",
+      "params": {
+        "acts": "${source.config.acts}",
+        "state": "${source.state}",
+        "refreshToken": "${source.config.refreshToken}"
+      },
+      "emits": "catalog",
+      "retry": { "type": "exponential", "maxAttempts": 3, "interval": "PT5M" },
+      "timeout": "PT10M"
+    },
+    {
+      "step": "grab",
+      "class": "git:github.com/0ics-srls/dp-it-normativa-grab@v0.2.0",
+      "perItem": true,
+      "chunkSize": 1,
+      "concurrencyLimit": 1,
+      "params": {
+        "items": "${items}",
+        "dir": "${dataRoot}/dp-it-normativa/${source.id}/raw"
+      },
+      "retry": { "type": "exponential", "maxAttempts": 3, "interval": "PT5M" },
+      "timeout": "PT20M",
+      "allowedHosts": ["api.normattiva.it", "export.normattiva.it", "www.gazzettaufficiale.it"]
+    },
+    {
+      "step": "convert",
+      "class": "git:github.com/0ics-srls/dp-it-normativa-convert@v0.2.0",
+      "perItem": true,
+      "chunkSize": 1,
+      "params": {
+        "items": "${items}",
+        "dirIn": "${dataRoot}/dp-it-normativa/${source.id}/raw",
+        "dirOut": "${dataRoot}/dp-it-normativa/${source.id}/plan",
+        "collection": "${source.config.collection}"
+      },
+      "timeout": "PT20M"
+    },
+    {
+      "step": "ingest",
+      "class": "git:github.com/0ics-srls/dp-it-normativa-ingest@v0.1.1",
+      "perItem": true,
+      "chunkSize": 1,
+      "db": "dataset",
+      "params": {
+        "items": "${items}",
+        "dirIn": "${dataRoot}/dp-it-normativa/${source.id}/plan",
+        "connString": "${dataset.connString}",
+        "schema": "ds_it_normativa"
+      },
+      "timeout": "PT30M",
+      "produces": ["ds_it_normativa.acts", "ds_it_normativa.units", "ds_it_normativa.unit_versions", "ds_it_normativa.akn_documents"]
+    },
+    {
+      "step": "embed",
+      "class": "git:github.com/0ics-srls/dp-lex-embed@dp-p7.1",
+      "perItem": true,
+      "chunkSize": 1,
+      "concurrencyLimit": 1,
+      "db": "dataset",
+      "secrets": ["JINA_API_KEY"],
+      "params": {
+        "items": "${items}",
+        "connString": "${dataset.connString}",
+        "table": "ds_it_normativa.units",
+        "keyColumn": "urn",
+        "textColumns": ["text_contextual"],
+        "vectorColumn": "embedding",
+        "tokenBudget": "${source.config.tokenBudget}",
+        "jinaApiKey": "${secret.JINA_API_KEY}"
+      },
+      "retry": { "type": "exponential", "maxAttempts": 3, "interval": "PT2M" },
+      "timeout": "PT30M",
+      "heartbeatMaxSeconds": 600,
+      "produces": ["ds_it_normativa.units"]
+    }
+  ],
+  "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "dataset": { "schema": "ds_it_normativa", "migrations": "schema/migrations", "contract": "serving/dataset.odcs.yaml" }
 }
