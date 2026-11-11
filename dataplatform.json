@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.dataplatform.0ics.ai/dataplatform/1.json",
   "name": "it-normativa",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "hostApi": "1",
   "sources": [
     {
@@ -186,11 +186,39 @@
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "releases": {
     "breakingChanges": {
+      "0.2.0": {
+        "message": "Screens added: acts list, act detail with versions and ingest status (Console menu Normativa Italia); no Tool, column or table is changed",
+        "scopedImpact": "it-normativa UI"
+      },
       "0.1.0": {
         "message": "Initial release: Normattiva acts and Gazzetta Ufficiale acts (detect, grab, convert, ingest, embed), schema ds_it_normativa (acts, units, unit_versions, edges, akn_documents) and 11 Tools (search, act_outline, acts_find, article, comma, refs, version_at_date, act_akn, guide, act_versions, ingest_status); no Screens yet",
         "scopedImpact": "new package"
       }
     }
   },
-  "dataset": { "schema": "ds_it_normativa", "migrations": "schema/migrations", "contract": "serving/dataset.odcs.yaml" }
+  "dataset": { "schema": "ds_it_normativa", "migrations": "schema/migrations", "contract": "serving/dataset.odcs.yaml" },
+  "ui": {
+    "hostUiApi": "1",
+    "entry": "ui/dist/main.js",
+    "styles": ["ui/dist/styles.css"],
+    "menu": {
+      "label": { "sk": "Normatíva Taliansko", "en": "Italian legislation", "it": "Normativa italiana" },
+      "icon": "pi pi-book",
+      "order": 110
+    },
+    "screens": [
+      { "id": "acts", "element": "dp-it-normativa-acts", "label": { "sk": "Akty", "en": "Acts", "it": "Atti" }, "icon": "pi pi-list", "default": true },
+      { "id": "act", "element": "dp-it-normativa-act", "label": { "sk": "Detail aktu", "en": "Act detail", "it": "Dettaglio atto" }, "icon": "pi pi-file" },
+      { "id": "status", "element": "dp-it-normativa-status", "label": { "sk": "Stav načítania", "en": "Ingest status", "it": "Stato dell'ingestione" }, "icon": "pi pi-chart-bar" }
+    ],
+    "permissions": [
+      "tools:acts_find",
+      "tools:act_outline",
+      "tools:act_versions",
+      "tools:ingest_status",
+      "tools:article",
+      "tools:act_akn",
+      "navigate"
+    ]
+  }
 }

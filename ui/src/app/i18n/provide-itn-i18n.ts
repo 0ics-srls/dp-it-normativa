@@ -14,7 +14,7 @@ export class LogOnceMissingHandler implements TranslocoMissingHandler {
     if (!this.reported.has(key)) {
       this.reported.add(key);
       // eslint-disable-next-line no-console -- the only diagnostic channel of a missing key
-      console.warn(`[dp-itn] missing translation: ${key}`);
+      console.warn(`[dp-it-normativa] missing translation: ${key}`);
     }
     return key;
   }

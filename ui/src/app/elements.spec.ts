@@ -8,7 +8,7 @@ import { itnProviders } from './providers';
 import { registerItn } from './register';
 import { ELEMENTS } from './screens';
 
-const TAGS = ['dp-itn-act', 'dp-itn-acts', 'dp-itn-status'];
+const TAGS = ['dp-it-normativa-act', 'dp-it-normativa-acts', 'dp-it-normativa-status'];
 
 function flatten(providers: readonly (Provider | EnvironmentProviders)[]): readonly unknown[] {
   return providers.flatMap((p) => {
@@ -25,9 +25,9 @@ describe('ELEMENTS', () => {
     expect(Object.keys(ELEMENTS).sort()).toEqual(TAGS);
   });
 
-  it('should prefix every tag with dp-itn- and map it to a component class when listed', () => {
+  it('should prefix every tag with dp-it-normativa- and map it to a component class when listed', () => {
     for (const [tag, type] of Object.entries(ELEMENTS)) {
-      expect(tag.startsWith('dp-itn-')).toBe(true);
+      expect(tag.startsWith('dp-it-normativa-')).toBe(true);
       expect((type as unknown as { ɵcmp?: unknown }).ɵcmp).toBeDefined();
     }
   });

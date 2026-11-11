@@ -4,7 +4,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { StatusStore } from './status.store';
 
 @Component({
-  selector: 'dp-itn-status-view',
+  selector: 'dp-it-normativa-status-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoPipe, DatePipe],
   templateUrl: './status-view.component.html',

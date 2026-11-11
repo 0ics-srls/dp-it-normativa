@@ -5,13 +5,13 @@ import { ItnTools } from '../../tools/itn-tools';
 import { ActsStore } from './acts.store';
 import { ActsViewComponent } from './acts-view.component';
 
-/** Root of the `dp-itn-acts` Screen. The root only wires the context; the view injects what needs it (avoids NG0200). */
+/** Root of the `dp-it-normativa-acts` Screen. The root only wires the context; the view injects what needs it (avoids NG0200). */
 @Component({
-  selector: 'dp-itn-acts',
+  selector: 'dp-it-normativa-acts',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ActsViewComponent],
   providers: [screenContextProvider(() => ActsScreen), ItnTools, ActsStore],
-  template: '<dp-itn-acts-view />',
+  template: '<dp-it-normativa-acts-view />',
 })
 export class ActsScreen {
   readonly context = input.required<PackageScreenContext>();

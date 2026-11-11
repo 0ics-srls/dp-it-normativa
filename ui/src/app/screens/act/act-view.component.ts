@@ -4,7 +4,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { ActStore } from './act.store';
 
 @Component({
-  selector: 'dp-itn-act-view',
+  selector: 'dp-it-normativa-act-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoPipe, DatePipe],
   templateUrl: './act-view.component.html',

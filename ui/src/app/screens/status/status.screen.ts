@@ -5,13 +5,13 @@ import { ItnTools } from '../../tools/itn-tools';
 import { StatusStore } from './status.store';
 import { StatusViewComponent } from './status-view.component';
 
-/** Root of the `dp-itn-status` Screen. The root only wires the context; the view injects what needs it (avoids NG0200). */
+/** Root of the `dp-it-normativa-status` Screen. The root only wires the context; the view injects what needs it (avoids NG0200). */
 @Component({
-  selector: 'dp-itn-status',
+  selector: 'dp-it-normativa-status',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [StatusViewComponent],
   providers: [screenContextProvider(() => StatusScreen), ItnTools, StatusStore],
-  template: '<dp-itn-status-view />',
+  template: '<dp-it-normativa-status-view />',
 })
 export class StatusScreen {
   readonly context = input.required<PackageScreenContext>();

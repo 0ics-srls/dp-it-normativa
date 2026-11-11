@@ -21,11 +21,11 @@ module.exports = defineConfig([
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
-        { type: 'attribute', prefix: 'dp-itn', style: 'camelCase' },
+        { type: 'attribute', prefix: 'dp-it-normativa', style: 'camelCase' },
       ],
       '@angular-eslint/component-selector': [
         'error',
-        { type: 'element', prefix: 'dp-itn', style: 'kebab-case' },
+        { type: 'element', prefix: 'dp-it-normativa', style: 'kebab-case' },
       ],
       '@typescript-eslint/no-explicit-any': 'error',
       'no-console': 'error',

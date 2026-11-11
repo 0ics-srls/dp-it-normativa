@@ -10,7 +10,7 @@
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",
-      "prefix": "dp-itn",
+      "prefix": "dp-it-normativa",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
