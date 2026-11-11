@@ -1,0 +1,16 @@
+{
+  "description": "Cross references of a unit: the edges that start at the urn, as a list of {from, to, type}. graph_populated is always false: the citation graph is not built yet, so an empty list means unknown, not no references. Parameters: urn (a unit, article or act urn). Example: {\"urn\": \"urn:nir:stato:legge:2000-07-27;212~art5\"}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "required": ["urn"],
+    "properties": {
+      "urn": { "type": "string", "minLength": 1 }
+    }
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 1,
+  "maxBytes": 262144,
+  "timeoutMs": 3000,
+  "pagination": "none"
+}

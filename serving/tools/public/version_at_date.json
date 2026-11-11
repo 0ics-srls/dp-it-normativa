@@ -1,0 +1,17 @@
+{
+  "description": "Text of a unit as it was in force on a date, from the stored version history. supported is true when a history exists (reason is empty when a version is in force, or says no version is in force at that date, with a NULL text); supported is false when only the current version is stored (then only vigente_date is meaningful). No row means the urn is unknown. Parameters: urn (unit, article or act urn), date (YYYY-MM-DD). Example: {\"urn\": \"urn:nir:stato:legge:2000-07-27;212~art5-com1\", \"date\": \"2003-01-01\"}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "required": ["urn", "date"],
+    "properties": {
+      "urn": { "type": "string", "minLength": 1 },
+      "date": { "type": "string", "format": "date" }
+    }
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 1,
+  "maxBytes": 262144,
+  "timeoutMs": 5000,
+  "pagination": "none"
+}
