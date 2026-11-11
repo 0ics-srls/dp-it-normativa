@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.dataplatform.0ics.ai/dataplatform/1.json",
   "name": "it-normativa",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "hostApi": "1",
   "sources": [
     {
@@ -186,6 +186,10 @@
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "releases": {
     "breakingChanges": {
+      "0.2.5": {
+        "message": "Act Screen: version timeline spacing (date and unit count were glued); no Tool, column or table is changed",
+        "scopedImpact": "it-normativa UI"
+      },
       "0.2.4": {
         "message": "embed conformance run carries the table params; no Tool, column, table or Screen is changed",
         "scopedImpact": "registration"
