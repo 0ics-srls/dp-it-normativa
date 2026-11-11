@@ -184,5 +184,13 @@
     }
   ],
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
+  "releases": {
+    "breakingChanges": {
+      "0.1.0": {
+        "message": "Initial release: Normattiva acts and Gazzetta Ufficiale acts (detect, grab, convert, ingest, embed), schema ds_it_normativa (acts, units, unit_versions, edges, akn_documents) and 11 Tools (search, act_outline, acts_find, article, comma, refs, version_at_date, act_akn, guide, act_versions, ingest_status); no Screens yet",
+        "scopedImpact": "new package"
+      }
+    }
+  },
   "dataset": { "schema": "ds_it_normativa", "migrations": "schema/migrations", "contract": "serving/dataset.odcs.yaml" }
 }
