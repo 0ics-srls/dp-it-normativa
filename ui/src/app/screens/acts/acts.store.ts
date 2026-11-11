@@ -2,6 +2,7 @@ import { computed, effect, inject, Injectable, signal, untracked } from '@angula
 import { injectPackageContext } from '@olx/package-ui-sdk';
 import type { ActRow } from '../../tools/itn-dto';
 import { ItnTools } from '../../tools/itn-tools';
+import { urnToSubPath } from '../act/urn-path';
 
 export const ACTS_PAGE_SIZE = 50;
 export const SEARCH_DEBOUNCE_MS = 300;
@@ -72,7 +73,7 @@ export class ActsStore {
   }
 
   open(urn: string): void {
-    this.context().navigateScreen('act', encodeURIComponent(urn));
+    this.context().navigateScreen('act', urnToSubPath(urn));
   }
 
   private async load(query: ActsQuery): Promise<void> {
