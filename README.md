@@ -33,7 +33,7 @@ Gateway names are `it_normativa_<tool>`. Each Tool is pure SQL with named parame
 | `it_normativa_act_outline` | `get_act_outline` | Articles of an act in legal order (2, 2-bis, 5, 10), comma counts, paging |
 | `it_normativa_acts_find` | `find-acts` (REST only) | Acts by title words, with unit counts and newest version date |
 | `it_normativa_article` | `get_article` | One article with its commi |
-| `it_normativa_comma` | `get_comma` | One comma, verbatim text, deep link, `is_citable` |
+| `it_normativa_comma` | `get_comma` | One comma, verbatim text, deep link (inserted articles as `~art25bis`, the form Normattiva resolves), `is_citable` |
 | `it_normativa_refs` | `follow_refs` | Outgoing edges; `graph_populated` is always false (the graph is not built) |
 | `it_normativa_version_at_date` | `get_version_at_date` | Text in force at a date from `unit_versions`; `supported` false when only the current version is stored |
 | `it_normativa_act_akn` | new | Stored Akoma Ntoso XML in slices (`offset`, `length`, `next_offset`) |
