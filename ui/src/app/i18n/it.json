@@ -1,0 +1,65 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Impossibile caricare i dati.",
+    "retry": "Riprova"
+  },
+  "acts": {
+    "title": "Atti",
+    "search": "Cerca per titolo",
+    "searchPlaceholder": "es. costituzione",
+    "collection": "Raccolta",
+    "allCollections": "Tutte le raccolte",
+    "columns": {
+      "act": "Atto",
+      "urn": "URN",
+      "units": "Unità",
+      "version": "Ultima versione"
+    },
+    "empty": "Nessun atto trovato.",
+    "previous": "Precedente",
+    "next": "Successiva",
+    "pager": "Pagine",
+    "range": "{{from}}-{{to}} di {{total}}"
+  },
+  "act": {
+    "title": "Atto",
+    "missing": "Apri un atto dall'elenco degli atti per vederne il dettaglio.",
+    "back": "Torna agli atti",
+    "openNormattiva": "Apri su Normattiva",
+    "aknHeading": "Documento Akoma Ntoso",
+    "akn": {
+      "length": "Lunghezza (caratteri)",
+      "sha256": "SHA-256",
+      "versionDate": "Data della versione",
+      "none": "Nessun documento memorizzato."
+    },
+    "versionsHeading": "Versioni",
+    "versionsNone": "Nessuna cronologia memorizzata.",
+    "unitsChanged": "{{count}} unità iniziano qui",
+    "versionDetail": "Limite {{date}}: {{count}} unità modificate.",
+    "outlineHeading": "Articoli",
+    "empty": "Nessun articolo trovato.",
+    "commas": "{{count}} commi",
+    "expand": "Mostra il testo",
+    "collapse": "Nascondi il testo",
+    "previous": "Precedente",
+    "next": "Successiva",
+    "pager": "Pagine",
+    "range": "{{from}}-{{to}} di {{total}}"
+  },
+  "status": {
+    "title": "Stato dell'ingestione",
+    "refresh": "Aggiorna",
+    "empty": "Nessun dato è stato ancora acquisito.",
+    "noCollection": "(senza raccolta)",
+    "warningHint": "Le unità senza embedding non sono ancora ricercabili per significato",
+    "columns": {
+      "collection": "Raccolta",
+      "acts": "Atti",
+      "units": "Unità",
+      "withoutEmbedding": "Senza embedding",
+      "lastIngested": "Ultima acquisizione (UTC)"
+    }
+  }
+}

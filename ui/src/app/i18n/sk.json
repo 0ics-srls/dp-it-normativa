@@ -1,0 +1,65 @@
+{
+  "common": {
+    "loading": "Načítavam...",
+    "error": "Údaje sa nepodarilo načítať.",
+    "retry": "Skúsiť znova"
+  },
+  "acts": {
+    "title": "Akty",
+    "search": "Hľadať podľa názvu",
+    "searchPlaceholder": "napr. costituzione",
+    "collection": "Kolekcia",
+    "allCollections": "Všetky kolekcie",
+    "columns": {
+      "act": "Akt",
+      "urn": "URN",
+      "units": "Jednotky",
+      "version": "Posledná verzia"
+    },
+    "empty": "Žiadne akty sa nenašli.",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "pager": "Stránky",
+    "range": "{{from}}-{{to}} z {{total}}"
+  },
+  "act": {
+    "title": "Akt",
+    "missing": "Otvorte akt zo zoznamu aktov a zobrazí sa jeho detail.",
+    "back": "Späť na akty",
+    "openNormattiva": "Otvoriť na Normattiva",
+    "aknHeading": "Dokument Akoma Ntoso",
+    "akn": {
+      "length": "Dĺžka (znaky)",
+      "sha256": "SHA-256",
+      "versionDate": "Dátum verzie",
+      "none": "Žiadny uložený dokument."
+    },
+    "versionsHeading": "Verzie",
+    "versionsNone": "Žiadna uložená história.",
+    "unitsChanged": "Tu začína {{count}} jednotiek",
+    "versionDetail": "Hranica {{date}}: zmenených jednotiek {{count}}.",
+    "outlineHeading": "Články",
+    "empty": "Žiadne články sa nenašli.",
+    "commas": "{{count}} odsekov",
+    "expand": "Zobraziť text",
+    "collapse": "Skryť text",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "pager": "Stránky",
+    "range": "{{from}}-{{to}} z {{total}}"
+  },
+  "status": {
+    "title": "Stav načítania",
+    "refresh": "Obnoviť",
+    "empty": "Zatiaľ sa nenačítalo nič.",
+    "noCollection": "(bez kolekcie)",
+    "warningHint": "Jednotky bez embeddingu sa zatiaľ nedajú hľadať podľa významu",
+    "columns": {
+      "collection": "Kolekcia",
+      "acts": "Akty",
+      "units": "Jednotky",
+      "withoutEmbedding": "Bez embeddingu",
+      "lastIngested": "Posledné načítanie (UTC)"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "The data could not be loaded.",
+    "retry": "Try again"
+  },
+  "acts": {
+    "title": "Acts",
+    "search": "Search by title",
+    "searchPlaceholder": "e.g. costituzione",
+    "collection": "Collection",
+    "allCollections": "All collections",
+    "columns": {
+      "act": "Act",
+      "urn": "URN",
+      "units": "Units",
+      "version": "Last version"
+    },
+    "empty": "No acts found.",
+    "previous": "Previous",
+    "next": "Next",
+    "pager": "Pages",
+    "range": "{{from}}-{{to}} of {{total}}"
+  },
+  "act": {
+    "title": "Act",
+    "missing": "Open an act from the list of acts to see its detail.",
+    "back": "Back to the acts",
+    "openNormattiva": "Open on Normattiva",
+    "aknHeading": "Akoma Ntoso document",
+    "akn": {
+      "length": "Length (characters)",
+      "sha256": "SHA-256",
+      "versionDate": "Version date",
+      "none": "No stored document."
+    },
+    "versionsHeading": "Versions",
+    "versionsNone": "No stored history.",
+    "unitsChanged": "{{count}} units start here",
+    "versionDetail": "Boundary {{date}}: {{count}} units changed.",
+    "outlineHeading": "Articles",
+    "empty": "No articles found.",
+    "commas": "{{count}} commi",
+    "expand": "Show text",
+    "collapse": "Hide text",
+    "previous": "Previous",
+    "next": "Next",
+    "pager": "Pages",
+    "range": "{{from}}-{{to}} of {{total}}"
+  },
+  "status": {
+    "title": "Ingest status",
+    "refresh": "Refresh",
+    "empty": "Nothing has been ingested yet.",
+    "noCollection": "(no collection)",
+    "warningHint": "Units without embedding are not searchable by meaning yet",
+    "columns": {
+      "collection": "Collection",
+      "acts": "Acts",
+      "units": "Units",
+      "withoutEmbedding": "Without embedding",
+      "lastIngested": "Last ingest (UTC)"
+    }
+  }
+}

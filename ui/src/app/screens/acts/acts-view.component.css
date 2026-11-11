@@ -1,0 +1,58 @@
+.acts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid th,
+.grid td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--p-content-border-color, #ddd);
+}
+
+.grid .num {
+  text-align: right;
+}
+
+.urn {
+  font-family: monospace;
+  font-size: 0.85em;
+  word-break: break-all;
+}
+
+.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--p-primary-color, #2563eb);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error {
+  color: var(--p-red-500, #dc2626);
+}
+
+.detail {
+  opacity: 0.7;
+}
