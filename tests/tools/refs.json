@@ -1,0 +1,10 @@
+{
+  "tool": "refs",
+  "params": {
+    "urn": "urn:nir:stato:legge:2000-07-27;212~art1"
+  },
+  "expect": {
+    "minRows": 1,
+    "maxRows": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "description": "Read one article with all its commi in legal order (numeric commi first, others such as 2-bis after them). Each row has the unit urn, the comma label, the text, the Normattiva deep link and is_citable (true when the urn can be cited). Parameters: urn (the article urn, e.g. urn:nir:stato:legge:2000-07-27;212~art5). An unknown article gives no rows. Example: {\"urn\": \"urn:nir:stato:legge:2000-07-27;212~art5\"}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "required": ["urn"],
+    "properties": {
+      "urn": { "type": "string", "minLength": 1 }
+    }
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 500,
+  "maxBytes": 524288,
+  "timeoutMs": 5000,
+  "pagination": "none"
+}

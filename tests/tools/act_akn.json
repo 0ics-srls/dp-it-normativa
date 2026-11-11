@@ -1,0 +1,12 @@
+{
+  "tool": "act_akn",
+  "params": {
+    "act_urn": "urn:nir:stato:legge:2000-07-27;212",
+    "offset": 0,
+    "length": 1000
+  },
+  "expect": {
+    "minRows": 0,
+    "maxRows": 1
+  }
+}

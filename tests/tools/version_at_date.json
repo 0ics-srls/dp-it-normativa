@@ -1,0 +1,11 @@
+{
+  "tool": "version_at_date",
+  "params": {
+    "urn": "urn:nir:stato:legge:2000-07-27;212~art1",
+    "date": "2020-01-01"
+  },
+  "expect": {
+    "minRows": 0,
+    "maxRows": 1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "acts_find",
+  "params": {
+    "q": "costituzione"
+  },
+  "expect": {
+    "minRows": 0,
+    "maxRows": 1000
+  }
+}
