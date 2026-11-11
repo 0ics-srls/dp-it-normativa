@@ -2,6 +2,11 @@
   "check": { "dryRun": true },
   "run": {
     "dryRun": true,
+    "table": "ds_it_normativa.units",
+    "keyColumn": "urn",
+    "textColumns": ["text_contextual"],
+    "vectorColumn": "embedding",
+    "tokenBudget": 0,
     "sourceId": "00000000-0000-0000-0000-000000000001",
     "batchId": "conformance",
     "packageVersion": "conformance",

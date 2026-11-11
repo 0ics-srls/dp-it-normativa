@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.dataplatform.0ics.ai/dataplatform/1.json",
   "name": "it-normativa",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "hostApi": "1",
   "sources": [
     {
@@ -186,6 +186,10 @@
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "releases": {
     "breakingChanges": {
+      "0.2.4": {
+        "message": "embed conformance run carries the table params; no Tool, column, table or Screen is changed",
+        "scopedImpact": "registration"
+      },
       "0.2.3": {
         "message": "tests/conformance/embed.json added (the protocol 1.1 embed step needs a conformance file); no Tool, column, table or Screen is changed",
         "scopedImpact": "registration"
