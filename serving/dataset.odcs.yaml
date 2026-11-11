@@ -1,0 +1,196 @@
+apiVersion: v3.2.0
+kind: DataContract
+id: urn:dataplatform:ds_it_normativa
+name: Italian legislation (Normattiva and Gazzetta Ufficiale)
+version: 0.1.0
+status: active
+domain: legal
+description:
+  purpose: Citable units (article and comma) of a configured set of Italian legal acts with their full-text and vector indexes, the version history of each unit, and the Akoma Ntoso text of each act.
+  usage: Read through the Tools of the it-normativa package.
+  limitations: Normattiva texts are non-authentic copies (the only official text is the Gazzetta Ufficiale); the amendment graph (edges) is not populated.
+team:
+  name: 0ics data platform
+  members:
+    - username: operator
+      role: owner
+slaProperties:
+  - property: freshness
+    value: 30
+    unit: d
+    description: The configured acts change rarely; a monthly re-check is enough.
+customProperties:
+  - property: license
+    value: source-attribution-required
+schema:
+  - name: acts
+    physicalName: acts
+    description: One legal act of the corpus.
+    properties:
+      - name: act_urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+        description: URN of the act without article fragment
+        customProperties:
+          - property: identifierScheme
+            value: urn:nir
+      - name: title
+        logicalType: string
+        physicalType: text
+      - name: denominazione
+        logicalType: string
+        physicalType: text
+      - name: year
+        logicalType: integer
+        physicalType: integer
+      - name: number
+        logicalType: integer
+        physicalType: integer
+      - name: kind
+        logicalType: string
+        physicalType: text
+        description: normattiva or gu
+      - name: collection
+        logicalType: string
+        physicalType: text
+      - name: versions_count
+        logicalType: integer
+        physicalType: integer
+      - name: first_valid_from
+        logicalType: date
+        physicalType: date
+      - name: last_valid_from
+        logicalType: date
+        physicalType: date
+      - name: units_count
+        logicalType: integer
+        physicalType: integer
+      - name: ingested_at
+        logicalType: timestamp
+        physicalType: timestamptz
+      - name: source_url
+        logicalType: string
+        physicalType: text
+  - name: units
+    physicalName: units
+    description: One citable unit (article, or comma of an article) in force.
+    customProperties:
+      - property: search
+        value: vector
+      - property: embeddingField
+        value: embedding
+      - property: embeddingModel
+        value: jina-embeddings-v3
+      - property: versioning
+        value: none
+    properties:
+      - name: urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+        description: URN of the unit (act urn plus ~artN and -comC)
+        customProperties:
+          - property: identifierScheme
+            value: urn:nir
+      - name: act
+        logicalType: string
+        physicalType: text
+        description: Title of the act
+      - name: act_urn
+        logicalType: string
+        physicalType: text
+      - name: article_num
+        logicalType: string
+        physicalType: text
+      - name: comma_num
+        logicalType: string
+        physicalType: text
+      - name: materialized_path
+        logicalType: string
+        physicalType: text
+      - name: rubrica
+        logicalType: string
+        physicalType: text
+      - name: text_raw
+        logicalType: string
+        physicalType: text
+      - name: text_contextual
+        logicalType: string
+        physicalType: text
+        description: Act title, rubrica and text; the text that is embedded
+      - name: version_date
+        logicalType: date
+        physicalType: date
+      - name: collection
+        logicalType: string
+        physicalType: text
+      - name: embedding
+        logicalType: array
+        physicalType: vector(1024)
+      - name: search_vector
+        logicalType: string
+        physicalType: tsvector
+        description: Generated italian full-text vector of text_raw
+      - name: deep_link
+        logicalType: string
+        physicalType: text
+        description: Generated Normattiva link to the article; null for anchors that are not urn:nir
+  - name: unit_versions
+    physicalName: unit_versions
+    description: Version history of a unit (valid_to null = open).
+    properties:
+      - name: urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+        customProperties:
+          - property: identifierScheme
+            value: urn:nir
+      - name: valid_from
+        logicalType: date
+        physicalType: date
+        primaryKey: true
+      - name: valid_to
+        logicalType: date
+        physicalType: date
+      - name: text_raw
+        logicalType: string
+        physicalType: text
+  - name: edges
+    physicalName: edges
+    description: Citation graph between units (not populated in this version).
+    properties:
+      - name: from_urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+      - name: to_urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+      - name: type
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+  - name: akn_documents
+    physicalName: akn_documents
+    description: The latest Akoma Ntoso text of an act.
+    properties:
+      - name: act_urn
+        logicalType: string
+        physicalType: text
+        primaryKey: true
+      - name: version_date
+        logicalType: date
+        physicalType: date
+      - name: sha256
+        logicalType: string
+        physicalType: text
+      - name: xml
+        logicalType: string
+        physicalType: text
+        description: Akoma Ntoso text of the act (up to several hundred KB); read it in slices with the Tool act_akn
+        customProperties:
+          - property: largeValue
+            value: true
