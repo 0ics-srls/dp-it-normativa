@@ -23,7 +23,30 @@
     "range": "{{from}}-{{to}} of {{total}}"
   },
   "act": {
-    "title": "Act"
+    "title": "Act",
+    "missing": "Open an act from the list of acts to see its detail.",
+    "back": "Back to the acts",
+    "openNormattiva": "Open on Normattiva",
+    "aknHeading": "Akoma Ntoso document",
+    "akn": {
+      "length": "Length (characters)",
+      "sha256": "SHA-256",
+      "versionDate": "Version date",
+      "none": "No stored document."
+    },
+    "versionsHeading": "Versions",
+    "versionsNone": "No stored history.",
+    "unitsChanged": "{{count}} units start here",
+    "versionDetail": "Boundary {{date}}: {{count}} units changed.",
+    "outlineHeading": "Articles",
+    "empty": "No articles found.",
+    "commas": "{{count}} commi",
+    "expand": "Show text",
+    "collapse": "Hide text",
+    "previous": "Previous",
+    "next": "Next",
+    "pager": "Pages",
+    "range": "{{from}}-{{to}} of {{total}}"
   },
   "status": {
     "title": "Ingest status"

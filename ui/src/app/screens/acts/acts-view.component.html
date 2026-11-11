@@ -43,7 +43,7 @@
             </td>
             <td class="urn">{{ row.urn }}</td>
             <td class="num">{{ row.unitCount }}</td>
-            <td>{{ row.version | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ row.version | date: 'yyyy-MM-dd' : 'UTC' }}</td>
           </tr>
         }
       </tbody>

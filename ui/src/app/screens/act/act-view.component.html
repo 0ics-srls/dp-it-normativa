@@ -1,0 +1,111 @@
+<section class="act">
+  <h1 data-testid="screen-title">{{ 'act.title' | transloco }}</h1>
+
+  @if (store.urn() === '') {
+    <p class="hint" data-testid="act-missing">{{ 'act.missing' | transloco }}</p>
+    <button type="button" (click)="store.back()">{{ 'act.back' | transloco }}</button>
+  } @else {
+    <header class="head">
+      <button type="button" class="link" data-testid="act-back" (click)="store.back()">{{ 'act.back' | transloco }}</button>
+      <h2 data-testid="act-title">{{ store.title() }}</h2>
+      <p class="urn" data-testid="act-urn">{{ store.urn() }}</p>
+      @if (store.link(); as href) {
+        <a data-testid="act-deeplink" [href]="href" target="_blank" rel="noopener noreferrer">{{ 'act.openNormattiva' | transloco }}</a>
+      }
+    </header>
+
+    <section aria-labelledby="itn-act-akn">
+      <h3 id="itn-act-akn">{{ 'act.aknHeading' | transloco }}</h3>
+      @if (store.akn(); as akn) {
+        <dl class="akn" data-testid="act-akn">
+          <dt>{{ 'act.akn.length' | transloco }}</dt>
+          <dd>{{ akn.totalLength }}</dd>
+          <dt>{{ 'act.akn.sha256' | transloco }}</dt>
+          <dd class="urn">{{ akn.sha256 }}</dd>
+          <dt>{{ 'act.akn.versionDate' | transloco }}</dt>
+          <dd>{{ akn.versionDate | date: 'yyyy-MM-dd' : 'UTC' }}</dd>
+        </dl>
+      } @else if (store.aknError()) {
+        <p class="error" role="alert">{{ 'common.error' | transloco }}</p>
+      } @else {
+        <p>{{ 'act.akn.none' | transloco }}</p>
+      }
+    </section>
+
+    <section aria-labelledby="itn-act-versions">
+      <h3 id="itn-act-versions">{{ 'act.versionsHeading' | transloco }}</h3>
+      @if (store.versionsError()) {
+        <p class="error" role="alert">{{ 'common.error' | transloco }}</p>
+      } @else if (store.versions().length === 0) {
+        <p>{{ 'act.versionsNone' | transloco }}</p>
+      } @else {
+        <ol class="timeline">
+          @for (version of store.versions(); track version.validFrom) {
+            <li data-testid="act-version">
+              <button type="button" class="link" data-testid="act-version-select" (click)="store.selectVersion(version)">
+                {{ version.validFrom | date: 'yyyy-MM-dd' : 'UTC' }}
+              </button>
+              <span class="count">{{ 'act.unitsChanged' | transloco: { count: version.unitsChanged } }}</span>
+            </li>
+          }
+        </ol>
+        @if (store.selectedVersion(); as selected) {
+          <p class="detail" data-testid="act-version-detail">
+            {{ 'act.versionDetail' | transloco: { date: (selected.validFrom | date: 'yyyy-MM-dd' : 'UTC'), count: selected.unitsChanged } }}
+          </p>
+        }
+      }
+    </section>
+
+    <section aria-labelledby="itn-act-outline">
+      <h3 id="itn-act-outline">{{ 'act.outlineHeading' | transloco }}</h3>
+      @if (store.outlineError()) {
+        <p class="error" role="alert" data-testid="act-error">{{ 'common.error' | transloco }} <span class="detail">{{ store.outlineDetail() }}</span></p>
+      } @else if (store.outlineLoading() && store.outline().length === 0) {
+        <p>{{ 'common.loading' | transloco }}</p>
+      } @else if (store.outline().length === 0) {
+        <p data-testid="act-empty">{{ 'act.empty' | transloco }}</p>
+      } @else {
+        <ul class="articles">
+          @for (article of store.outline(); track article.urn) {
+            <li data-testid="act-article">
+              <div class="article-head">
+                <span class="num" data-testid="act-article-num">{{ article.articleNum }}</span>
+                <span class="rubrica">{{ article.rubrica }}</span>
+                <span class="count">{{ 'act.commas' | transloco: { count: article.commaCount } }}</span>
+                <button
+                  type="button"
+                  data-testid="act-expand"
+                  [attr.aria-expanded]="store.expanded().includes(article.urn)"
+                  (click)="store.toggle(article.urn)"
+                >
+                  {{ (store.expanded().includes(article.urn) ? 'act.collapse' : 'act.expand') | transloco }}
+                </button>
+              </div>
+              @if (store.expanded().includes(article.urn)) {
+                <ol class="commas" data-testid="act-commas">
+                  @for (comma of store.commas()[article.urn] ?? []; track comma.urn) {
+                    <li>
+                      @if (comma.commaNum) {
+                        <span class="num">{{ comma.commaNum }}</span>
+                      }
+                      {{ comma.text }}
+                    </li>
+                  }
+                </ol>
+              }
+              @if (store.articleErrors().includes(article.urn)) {
+                <p class="error" role="alert">{{ 'common.error' | transloco }}</p>
+              }
+            </li>
+          }
+        </ul>
+        <nav class="pager" [attr.aria-label]="'act.pager' | transloco">
+          <button type="button" data-testid="act-prev" [disabled]="!store.hasPrevious()" (click)="store.previous()">{{ 'act.previous' | transloco }}</button>
+          <span>{{ 'act.range' | transloco: { from: store.from(), to: store.to(), total: store.totalArticles() } }}</span>
+          <button type="button" data-testid="act-next" [disabled]="!store.hasNext()" (click)="store.next()">{{ 'act.next' | transloco }}</button>
+        </nav>
+      }
+    </section>
+  }
+</section>

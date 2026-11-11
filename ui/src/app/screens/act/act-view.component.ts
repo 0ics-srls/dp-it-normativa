@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { ActStore } from './act.store';
 
 @Component({
   selector: 'dp-itn-act-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoPipe],
-  template: '<h1 data-testid="screen-title">{{ "act.title" | transloco }}</h1>',
+  imports: [TranslocoPipe, DatePipe],
+  templateUrl: './act-view.component.html',
+  styleUrl: './act-view.component.css',
 })
-export class ActViewComponent {}
+export class ActViewComponent {
+  protected readonly store = inject(ActStore);
+}

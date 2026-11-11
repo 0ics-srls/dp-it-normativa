@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { injectPackageContext } from '@olx/package-ui-sdk';
-import { ACT_DATES, STATUS_DATES, type ActRow, type StatusRow } from './itn-dto';
+import { ACT_DATES, AKN_DATES, STATUS_DATES, VERSION_DATES, type ActRow, type AknMeta, type CommaRow, type OutlineRow, type StatusRow, type VersionRow } from './itn-dto';
 import { ItnTool, TOOL_INPUT_KEYS } from './itn-tool';
 
 /** A Tool call failed; carries the Tool name and the code of the rejection when it had one. */
@@ -89,5 +89,24 @@ export class ItnTools {
 
   ingestStatus(): Promise<readonly StatusRow[]> {
     return this.rows(ItnTool.IngestStatus, {}, STATUS_DATES);
+  }
+
+  actOutline(a: { urn: string; limit: number; offset: number }): Promise<readonly OutlineRow[]> {
+    return this.rows(ItnTool.ActOutline, a, []);
+  }
+
+  /** The commi of one article, in the legal order the Tool returns. */
+  article(urn: string): Promise<readonly CommaRow[]> {
+    return this.rows(ItnTool.Article, { urn }, []);
+  }
+
+  actVersions(actUrn: string): Promise<readonly VersionRow[]> {
+    return this.rows(ItnTool.ActVersions, { actUrn }, VERSION_DATES);
+  }
+
+  /** Slice 0 of length 1: only the document identity (total_length, sha256, version_date), never the XML. */
+  async aknMeta(actUrn: string): Promise<AknMeta | null> {
+    const [row] = await this.rows<AknMeta>(ItnTool.ActAkn, { actUrn, offset: 0, length: 1 }, AKN_DATES);
+    return row ?? null;
   }
 }
