@@ -1,0 +1,5 @@
+{
+  "check": { "kind": "normattiva", "acts": [{ "denominazione": "LEGGE", "anno": 2000, "numero": 212 }] },
+  "run": { "kind": "normattiva", "acts": [{ "denominazione": "LEGGE", "anno": 2000, "numero": 212 }] },
+  "expect": { "minItems": 1 }
+}
