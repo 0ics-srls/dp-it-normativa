@@ -1,0 +1,11 @@
+{
+  "check": { "dryRun": true },
+  "run": {
+    "dryRun": true,
+    "sourceId": "00000000-0000-0000-0000-000000000001",
+    "batchId": "conformance",
+    "packageVersion": "conformance",
+    "items": []
+  },
+  "expect": { "minItems": 0 }
+}
