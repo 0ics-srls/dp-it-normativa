@@ -1,0 +1,13 @@
+{
+  "description": "The manual of the Italian normative corpus: URN anatomy, how to search (web-search syntax, raw tsquery, modes, filters), how to navigate by URN, the usual flows and the limits. Read it first. No parameters.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 1,
+  "maxBytes": 65536,
+  "timeoutMs": 2000,
+  "pagination": "none"
+}

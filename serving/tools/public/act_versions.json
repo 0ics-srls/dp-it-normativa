@@ -1,0 +1,15 @@
+{
+  "description": "Version timeline of an act: the dates at which a new text of some unit starts, with how many units start there (oldest first). The first date is the original text. Parameters: act_urn (act URN without the article part). An act without stored history gives no rows. Example: {\"act_urn\": \"urn:nir:stato:legge:2000-07-27;212\"}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "required": ["act_urn"],
+    "properties": {
+      "act_urn": { "type": "string", "minLength": 1 }
+    }
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 500,
+  "timeoutMs": 10000,
+  "pagination": "none"
+}

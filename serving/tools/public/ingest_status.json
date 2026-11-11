@@ -1,0 +1,12 @@
+{
+  "description": "Ingest status per collection: number of acts, number of units, units still without embedding (not searchable by meaning yet) and the time of the newest ingest. No parameters.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 200,
+  "timeoutMs": 15000,
+  "pagination": "none"
+}
