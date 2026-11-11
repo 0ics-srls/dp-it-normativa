@@ -19,7 +19,7 @@ flt AS (
     SELECT u.urn, u.search_vector, u.embedding
       FROM units u
      WHERE (@collection IS NULL OR u.collection = @collection)
-       AND (@act IS NULL OR u.urn LIKE @act || '~%')
+       AND (@act IS NULL OR starts_with(u.urn, @act || '~'))
        AND (@article_num IS NULL OR u.article_num = @article_num)
        AND (@date_from IS NULL OR u.version_date >= @date_from)
        AND (@date_to IS NULL OR u.version_date <= @date_to)

@@ -1,0 +1,16 @@
+{
+  "description": "Read one comma (or an article without commi) by its exact urn: comma label, text, Normattiva deep link and is_citable. Parameters: urn (e.g. urn:nir:stato:legge:2000-07-27;212~art5-com2). An unknown urn gives no rows. Example: {\"urn\": \"urn:nir:stato:legge:2000-07-27;212~art5-com2\"}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "required": ["urn"],
+    "properties": {
+      "urn": { "type": "string", "minLength": 1 }
+    }
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 1,
+  "maxBytes": 131072,
+  "timeoutMs": 3000,
+  "pagination": "none"
+}

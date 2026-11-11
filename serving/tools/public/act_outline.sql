@@ -6,7 +6,7 @@ SELECT max(u.act) AS act,
        count(u.comma_num) AS comma_count,
        count(*) OVER () AS total_articles
   FROM units u
- WHERE u.urn LIKE @urn || '~%'
+ WHERE starts_with(u.urn, @urn || '~')
  GROUP BY u.article_num
  ORDER BY NULLIF(substring(u.article_num from '^[0-9]+'), '')::int NULLS LAST,
           substring(u.article_num from '^[0-9]*(.*)$') COLLATE "C"
