@@ -1,6 +1,31 @@
 {
-  "common": { "loading": "Caricamento...", "error": "Impossibile caricare i dati.", "retry": "Riprova" },
-  "acts": { "title": "Atti" },
-  "act": { "title": "Atto" },
-  "status": { "title": "Stato dell'ingestione" }
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Impossibile caricare i dati.",
+    "retry": "Riprova"
+  },
+  "acts": {
+    "title": "Atti",
+    "search": "Cerca per titolo",
+    "searchPlaceholder": "es. costituzione",
+    "collection": "Raccolta",
+    "allCollections": "Tutte le raccolte",
+    "columns": {
+      "act": "Atto",
+      "urn": "URN",
+      "units": "Unità",
+      "version": "Ultima versione"
+    },
+    "empty": "Nessun atto trovato.",
+    "previous": "Precedente",
+    "next": "Successiva",
+    "pager": "Pagine",
+    "range": "{{from}}-{{to}} di {{total}}"
+  },
+  "act": {
+    "title": "Atto"
+  },
+  "status": {
+    "title": "Stato dell'ingestione"
+  }
 }

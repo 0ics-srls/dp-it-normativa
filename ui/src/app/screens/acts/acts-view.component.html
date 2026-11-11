@@ -1,0 +1,58 @@
+<section class="acts">
+  <h1 data-testid="screen-title">{{ 'acts.title' | transloco }}</h1>
+
+  <div class="filters">
+    <label for="itn-acts-search">{{ 'acts.search' | transloco }}</label>
+    <input
+      id="itn-acts-search"
+      type="search"
+      data-testid="acts-search"
+      [placeholder]="'acts.searchPlaceholder' | transloco"
+      (input)="onSearch($event)"
+    />
+    <label for="itn-acts-collection">{{ 'acts.collection' | transloco }}</label>
+    <select id="itn-acts-collection" data-testid="acts-collection" [value]="store.collection()" (change)="onCollection($event)">
+      <option value="">{{ 'acts.allCollections' | transloco }}</option>
+      @for (name of store.collections(); track name) {
+        <option [value]="name">{{ name }}</option>
+      }
+    </select>
+  </div>
+
+  @if (store.error(); as key) {
+    <p class="error" role="alert" data-testid="acts-error">{{ key | transloco }} <span class="detail">{{ store.errorDetail() }}</span></p>
+  } @else if (store.loading() && store.acts().length === 0) {
+    <p data-testid="acts-loading">{{ 'common.loading' | transloco }}</p>
+  } @else if (store.acts().length === 0) {
+    <p class="empty" data-testid="acts-empty">{{ 'acts.empty' | transloco }}</p>
+  } @else {
+    <table class="grid">
+      <thead>
+        <tr>
+          <th scope="col">{{ 'acts.columns.act' | transloco }}</th>
+          <th scope="col">{{ 'acts.columns.urn' | transloco }}</th>
+          <th scope="col" class="num">{{ 'acts.columns.units' | transloco }}</th>
+          <th scope="col">{{ 'acts.columns.version' | transloco }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of store.acts(); track row.urn) {
+          <tr data-testid="acts-row">
+            <td>
+              <button type="button" class="link" data-testid="acts-open" (click)="store.open(row.urn)">{{ row.act }}</button>
+            </td>
+            <td class="urn">{{ row.urn }}</td>
+            <td class="num">{{ row.unitCount }}</td>
+            <td>{{ row.version | date: 'yyyy-MM-dd' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  <nav class="pager" [attr.aria-label]="'acts.pager' | transloco">
+    <button type="button" data-testid="acts-prev" [disabled]="!store.hasPrevious()" (click)="store.previous()">{{ 'acts.previous' | transloco }}</button>
+    <span data-testid="acts-range">{{ 'acts.range' | transloco: { from: store.from(), to: store.to(), total: store.total() } }}</span>
+    <button type="button" data-testid="acts-next" [disabled]="!store.hasNext()" (click)="store.next()">{{ 'acts.next' | transloco }}</button>
+  </nav>
+</section>

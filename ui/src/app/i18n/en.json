@@ -1,6 +1,31 @@
 {
-  "common": { "loading": "Loading...", "error": "The data could not be loaded.", "retry": "Try again" },
-  "acts": { "title": "Acts" },
-  "act": { "title": "Act" },
-  "status": { "title": "Ingest status" }
+  "common": {
+    "loading": "Loading...",
+    "error": "The data could not be loaded.",
+    "retry": "Try again"
+  },
+  "acts": {
+    "title": "Acts",
+    "search": "Search by title",
+    "searchPlaceholder": "e.g. costituzione",
+    "collection": "Collection",
+    "allCollections": "All collections",
+    "columns": {
+      "act": "Act",
+      "urn": "URN",
+      "units": "Units",
+      "version": "Last version"
+    },
+    "empty": "No acts found.",
+    "previous": "Previous",
+    "next": "Next",
+    "pager": "Pages",
+    "range": "{{from}}-{{to}} of {{total}}"
+  },
+  "act": {
+    "title": "Act"
+  },
+  "status": {
+    "title": "Ingest status"
+  }
 }

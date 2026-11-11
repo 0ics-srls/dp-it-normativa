@@ -1,6 +1,31 @@
 {
-  "common": { "loading": "Načítavam...", "error": "Údaje sa nepodarilo načítať.", "retry": "Skúsiť znova" },
-  "acts": { "title": "Akty" },
-  "act": { "title": "Akt" },
-  "status": { "title": "Stav načítania" }
+  "common": {
+    "loading": "Načítavam...",
+    "error": "Údaje sa nepodarilo načítať.",
+    "retry": "Skúsiť znova"
+  },
+  "acts": {
+    "title": "Akty",
+    "search": "Hľadať podľa názvu",
+    "searchPlaceholder": "napr. costituzione",
+    "collection": "Kolekcia",
+    "allCollections": "Všetky kolekcie",
+    "columns": {
+      "act": "Akt",
+      "urn": "URN",
+      "units": "Jednotky",
+      "version": "Posledná verzia"
+    },
+    "empty": "Žiadne akty sa nenašli.",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "pager": "Stránky",
+    "range": "{{from}}-{{to}} z {{total}}"
+  },
+  "act": {
+    "title": "Akt"
+  },
+  "status": {
+    "title": "Stav načítania"
+  }
 }
