@@ -1,0 +1,36 @@
+{
+  "description": "Search the Italian normative corpus (laws, codes, Gazzetta Ufficiale acts) by text, meaning or both. Hybrid mode fuses full-text (italian) and vector ranking with reciprocal rank fusion. Parameters: query (words; web-search syntax: \"exact phrase\", word OR word, -excluded), lexical_raw (Postgres tsquery for prefix and distance, e.g. licenz:* or licenza <2> edilizia; replaces the lexical side), k (1..50, default 10), mode (hybrid, lexical, semantic), filters collection, act (act URN without the article part), article_num, date_from and date_to (YYYY-MM-DD, version date, inclusive). At least a query or one filter is required; filters alone list matches ordered by URN. Example: {\"query\": \"licenza edilizia\", \"collection\": \"NORMATTIVA\", \"k\": 5}.",
+  "version": 1,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "maxLength": 1000,
+        "x-embed": { "into": "q_vec", "column": "units.embedding", "model": "jina-embeddings-v3" }
+      },
+      "lexical_raw": { "type": "string", "maxLength": 1000 },
+      "k": { "type": "integer", "minimum": 1, "maximum": 50, "default": 10 },
+      "mode": { "type": "string", "enum": ["hybrid", "lexical", "semantic"], "default": "hybrid" },
+      "collection": { "type": "string" },
+      "act": { "type": "string" },
+      "article_num": { "type": "string" },
+      "date_from": { "type": "string", "format": "date" },
+      "date_to": { "type": "string", "format": "date" }
+    },
+    "anyOf": [
+      { "required": ["query"] },
+      { "required": ["lexical_raw"] },
+      { "required": ["collection"] },
+      { "required": ["act"] },
+      { "required": ["article_num"] },
+      { "required": ["date_from"] },
+      { "required": ["date_to"] }
+    ]
+  },
+  "annotations": { "readOnlyHint": true, "idempotentHint": true },
+  "maxRows": 50,
+  "maxBytes": 1048576,
+  "timeoutMs": 15000,
+  "pagination": "none"
+}
