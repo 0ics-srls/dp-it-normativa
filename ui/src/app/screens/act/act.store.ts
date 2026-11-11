@@ -2,18 +2,10 @@ import { computed, effect, inject, Injectable, signal, untracked } from '@angula
 import { injectPackageContext } from '@olx/package-ui-sdk';
 import type { AknMeta, CommaRow, OutlineRow, VersionRow } from '../../tools/itn-dto';
 import { ItnTools } from '../../tools/itn-tools';
+import { subPathToUrn } from './urn-path';
 
 export const OUTLINE_PAGE_SIZE = 50;
 const NORMATTIVA_LINK = 'https://www.normattiva.it/uri-res/N2Ls?';
-
-/** The route carries the urn URL-encoded (it holds `:` `;` `~`); a malformed escape is taken as it is. */
-export function decodeUrn(subPath: string): string {
-  try {
-    return decodeURIComponent(subPath);
-  } catch {
-    return subPath;
-  }
-}
 
 /** Normattiva deep link of an act, empty for anchors that are not `urn:nir:` (no public page). */
 export function normattivaLink(urn: string): string {
@@ -25,7 +17,7 @@ export class ActStore {
   private readonly tools = inject(ItnTools);
   private readonly context = injectPackageContext();
 
-  readonly urn = computed(() => decodeUrn(this.context().subPath));
+  readonly urn = computed(() => subPathToUrn(this.context().subPath));
   readonly link = computed(() => normattivaLink(this.urn()));
 
   readonly outline = signal<readonly OutlineRow[]>([]);

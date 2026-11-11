@@ -133,7 +133,7 @@ describe('ActsScreen', () => {
     fixture.detectChanges();
     await settle(fixture);
     must(rows(fixture)[0] ?? root(fixture), '[data-testid="acts-open"]').click();
-    expect(navigateScreen).toHaveBeenCalledExactlyOnceWith('act', encodeURIComponent('urn:nir:stato:legge:2000-07-27;212'));
+    expect(navigateScreen).toHaveBeenCalledExactlyOnceWith('act', 'urn:nir:stato:legge:2000-07-27;212');
   });
 
   it('should render Slovak texts when the locale is sk', async () => {

@@ -4,6 +4,7 @@ import { aknWire, articleWire, outlineWire, versionWire } from '../../testing/it
 import { callsOf, stubItnEnvironment } from '../../testing/stub-itn-tools';
 import { itnProviders } from '../../providers';
 import { ActScreen } from './act.screen';
+import { urnToSubPath } from './urn-path';
 
 type Handler = (input: object) => unknown;
 
@@ -16,7 +17,7 @@ interface Handlers {
   readonly akn?: Handler;
 }
 
-function setup(handlers: Handlers = {}, subPath: string = encodeURIComponent(URN)) {
+function setup(handlers: Handlers = {}, subPath: string = URN) {
   const env = stubItnEnvironment(
     {
       act_outline:
@@ -123,7 +124,7 @@ describe('ActScreen', () => {
   });
 
   it('should show no link when the urn is not an urn:nir anchor', async () => {
-    const { fixture } = setup({}, encodeURIComponent('/akn/sk/act/2020/1'));
+    const { fixture } = setup({}, urnToSubPath('/akn/sk/act/2020/1'));
     fixture.detectChanges();
     await settle(fixture);
     expect(root(fixture).querySelector('[data-testid="act-deeplink"]')).toBeNull();
