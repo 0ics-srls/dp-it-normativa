@@ -25,21 +25,21 @@ Data package `it-normativa`: Italian legislation (Normattiva acts and Gazzetta U
 
 ## Tools
 
-Gateway names are `it_normativa_<tool>`. Each Tool is pure SQL with named parameters. Legacy names are the old LexCorpus MCP/REST tools.
+Gateway names are `it-normativa_<tool>`. Each Tool is pure SQL with named parameters. Legacy names are the old LexCorpus MCP/REST tools.
 
 | Tool | Legacy | Purpose |
 |---|---|---|
-| `it_normativa_search` | `search` | Hybrid search: full text (italian) + vector, fused with RRF (k = 60); `mode` hybrid, lexical or semantic; `lexical_raw` for tsquery syntax; filters collection, act, article_num, date_from, date_to; filter-only listing ordered by URN |
-| `it_normativa_act_outline` | `get_act_outline` | Articles of an act in legal order (2, 2-bis, 5, 10), comma counts, paging |
-| `it_normativa_acts_find` | `find-acts` (REST only) | Acts by title words, with unit counts and newest version date |
-| `it_normativa_article` | `get_article` | One article with its commi |
-| `it_normativa_comma` | `get_comma` | One comma, verbatim text, deep link (inserted articles as `~art25bis`, the form Normattiva resolves), `is_citable` |
-| `it_normativa_refs` | `follow_refs` | Outgoing edges; `graph_populated` is always false (the graph is not built) |
-| `it_normativa_version_at_date` | `get_version_at_date` | Text in force at a date from `unit_versions`; `supported` false when only the current version is stored |
-| `it_normativa_act_akn` | new | Stored Akoma Ntoso XML in slices (`offset`, `length`, `next_offset`) |
-| `it_normativa_guide` | `guide` | The manual (normativa half of the legacy guide, with the package tool names) |
-| `it_normativa_act_versions` | new | Version start dates of an act (UI timeline) |
-| `it_normativa_ingest_status` | new | Units, acts and units without embedding per collection (UI status) |
+| `it-normativa_search` | `search` | Hybrid search: full text (italian) + vector, fused with RRF (k = 60); `mode` hybrid, lexical or semantic; `lexical_raw` for tsquery syntax; filters collection, act, article_num, date_from, date_to; filter-only listing ordered by URN |
+| `it-normativa_act_outline` | `get_act_outline` | Articles of an act in legal order (2, 2-bis, 5, 10), comma counts, paging |
+| `it-normativa_acts_find` | `find-acts` (REST only) | Acts by title words, with unit counts and newest version date |
+| `it-normativa_article` | `get_article` | One article with its commi |
+| `it-normativa_comma` | `get_comma` | One comma, verbatim text, deep link (inserted articles as `~art25bis`, the form Normattiva resolves), `is_citable` |
+| `it-normativa_refs` | `follow_refs` | Outgoing edges; `graph_populated` is always false (the graph is not built) |
+| `it-normativa_version_at_date` | `get_version_at_date` | Text in force at a date from `unit_versions`; `supported` false when only the current version is stored |
+| `it-normativa_act_akn` | new | Stored Akoma Ntoso XML in slices (`offset`, `length`, `next_offset`) |
+| `it-normativa_guide` | `guide` | The manual (normativa half of the legacy guide, with the package tool names) |
+| `it-normativa_act_versions` | new | Version start dates of an act (UI timeline) |
+| `it-normativa_ingest_status` | new | Units, acts and units without embedding per collection (UI status) |
 
 ### Hybrid search pattern
 
