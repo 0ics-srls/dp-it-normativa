@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.dataplatform.0ics.ai/dataplatform/1.json",
   "name": "it-normativa",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "hostApi": "1",
   "sources": [
     {
@@ -186,6 +186,10 @@
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "releases": {
     "breakingChanges": {
+      "0.2.7": {
+        "message": "guide text only: Tool names written with the real hyphenated dataset prefix (it-normativa_search); no Tool, schema or data change",
+        "scopedImpact": "it-normativa_guide text"
+      },
       "0.2.6": {
         "message": "Deep link of an inserted article is ~art25bis (Normattiva ignores the hyphen form and shows the base article): migration 0003 recomputes units.deep_link; the act Screen route carries the raw urn; no Tool or column is added or removed",
         "scopedImpact": "deep_link values of -bis/-ter articles, it-normativa UI"
