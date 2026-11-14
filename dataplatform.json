@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.dataplatform.0ics.ai/dataplatform/1.json",
   "name": "it-normativa",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "hostApi": "1",
   "sources": [
     {
@@ -186,6 +186,10 @@
   "catalog": { "noveltyKey": "actId|version", "retryFailed": "newUrlOnly" },
   "releases": {
     "breakingChanges": {
+      "0.2.8": {
+        "message": "search Tool declares x-embed.skipWhen on mode lexical: a lexical call no longer embeds the query (no Jina call); no Tool is removed, no column removed, additive only",
+        "scopedImpact": "it-normativa_search"
+      },
       "0.2.7": {
         "message": "guide text only: Tool names written with the real hyphenated dataset prefix (it-normativa_search); no Tool, schema or data change",
         "scopedImpact": "it-normativa_guide text"

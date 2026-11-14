@@ -47,7 +47,7 @@ Two CTEs (`lex`, `sem`) rank with `ROW_NUMBER()` over their own order and take `
 
 ### Parity with the legacy tools
 
-Constants copied from the legacy code: `ts_headline` options `StartSel=«,StopSel=»,MaxFragments=2,MaxWords=28,MinWords=8`, 200-character snippet, RRF 60, `k` 1..50, outline `limit` 1..200, `acts_find` `limit` 1..1000, the `version_at_date` reasons, int.TryParse comma order. Deliberate differences: `urn` filters use `starts_with` instead of `LIKE` (no wildcard reading of a URN); the lexical ranking breaks ties by URN; a `mode=lexical` call still embeds the query on the Host (known gap, cached).
+Constants copied from the legacy code: `ts_headline` options `StartSel=«,StopSel=»,MaxFragments=2,MaxWords=28,MinWords=8`, 200-character snippet, RRF 60, `k` 1..50, outline `limit` 1..200, `acts_find` `limit` 1..1000, the `version_at_date` reasons, int.TryParse comma order. Deliberate differences: `urn` filters use `starts_with` instead of `LIKE` (no wildcard reading of a URN); the lexical ranking breaks ties by URN; a `mode=lexical` call does not embed the query (`x-embed.skipWhen`, since 0.2.8): the Host binds `q_vec` NULL.
 
 ## Data contract and tests
 
